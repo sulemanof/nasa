@@ -55,7 +55,13 @@ const Search: React.FC<Props> = ({ loading }) => {
       return;
     }
 
-    router.push(buildQuery(searchText, yearStart, yearEnd));
+    router.push(
+      buildQuery({
+        q: trimmedSearchText,
+        yearStart,
+        yearEnd,
+      })
+    );
   };
 
   return (

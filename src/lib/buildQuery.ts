@@ -1,7 +1,12 @@
 import { SEARCH_TERM_KEY, YEAR_END_KEY, YEAR_START_KEY } from './constants';
+import { QueryParams } from './types';
 
-export const buildQuery = (searchText: string, yearStart: string, yearEnd: string) => {
-  let query = `?${SEARCH_TERM_KEY}=${searchText}`;
+export const buildQuery = ({ q, yearStart, yearEnd }: Partial<QueryParams>) => {
+  if (!q) {
+    return '';
+  }
+
+  let query = `?${SEARCH_TERM_KEY}=${q}`;
 
   if (yearStart) {
     query += `&${YEAR_START_KEY}=${yearStart}`;

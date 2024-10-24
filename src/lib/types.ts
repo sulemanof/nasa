@@ -26,3 +26,9 @@ export interface SearchImageResult {
     version: string;
   };
 }
+
+export interface QueryParams {
+  q: string;
+  yearStart?: string;
+  yearEnd?: string;
+}

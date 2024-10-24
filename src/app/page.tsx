@@ -1,32 +1,26 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation';
 
 import ImageCollection from '@/components/ImageCollection';
 import Search from '@/components/Search';
+import { buildQuery } from '@/lib/buildQuery';
 import { SEARCH_ENDPOINT } from '@/lib/constants';
-import { SearchImageResult } from '@/lib/types';
+import { QueryParams, SearchImageResult } from '@/lib/types';
 
-export default function Home() {
-  const [data, setData] = useState<null | SearchImageResult>(null);
-  const [loading, setLoading] = useState(false);
+interface Props {
+  searchParams: Partial<QueryParams>;
+}
 
-  const searchParams = useSearchParams();
+const Home = async ({ searchParams }: Props) => {
+  const query = buildQuery(await searchParams);
 
-  useEffect(() => {
-    if (!searchParams) {
-      return;
-    }
+  let result: SearchImageResult | null = null;
 
-    setLoading(true);
-
-    fetch(`${SEARCH_ENDPOINT}?${searchParams}`)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .finally(() => setLoading(false));
-  }, [searchParams]);
+  if (query) {
+    const data = await fetch(`${SEARCH_ENDPOINT}${query}`);
+    result = await data.json();
+  }
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -35,9 +29,9 @@ export default function Home() {
         <h1 className="text-2xl font-bold">Welcome to NASA</h1>
       </header>
       <main className="flex flex-col gap-8 w-full h-full">
-        <Search loading={loading} />
-        {data?.collection && data.collection.items.length > 0 ? (
-          <ImageCollection collection={data.collection} />
+        <Search loading={false} />
+        {result?.collection && result.collection.items.length > 0 ? (
+          <ImageCollection collection={result.collection} />
         ) : (
           <p className="text-lg text-center">No results found</p>
         )}
@@ -45,4 +39,6 @@ export default function Home() {
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>
   );
-}
+};
+
+export default Home;
