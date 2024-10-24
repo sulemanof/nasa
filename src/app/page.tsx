@@ -1,6 +1,4 @@
-// import { useEffect, useState } from 'react';
-import Image from 'next/image';
-// import { useSearchParams } from 'next/navigation';
+import Image from 'next/legacy/image';
 
 import ImageCollection from '@/components/ImageCollection';
 import Search from '@/components/Search';
@@ -29,7 +27,9 @@ const Home = async ({ searchParams }: Props) => {
         <h1 className="text-2xl font-bold">Welcome to NASA</h1>
       </header>
       <main className="flex flex-col gap-8 w-full h-full">
-        <Search loading={false} />
+        <Search />
+
+        <p>Total hits: {result?.collection.metadata.total_hits}</p>
         {result?.collection && result.collection.items.length > 0 ? (
           <ImageCollection collection={result.collection} />
         ) : (

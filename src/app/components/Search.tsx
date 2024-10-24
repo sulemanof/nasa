@@ -3,16 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Input } from './ui/input';
-import { Button } from './ui/button';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { buildQuery } from '@/lib/buildQuery';
 import { SEARCH_TERM_KEY, YEAR_END_KEY, YEAR_START_KEY } from '@/lib/constants';
 
-interface Props {
-  loading: boolean;
-}
-
-const Search: React.FC<Props> = ({ loading }) => {
+const Search: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [yearStart, setYearStart] = useState('');
   const [yearEnd, setYearEnd] = useState('');
@@ -100,7 +96,7 @@ const Search: React.FC<Props> = ({ loading }) => {
       </div>
 
       <Button className="md:basis-1/5" type="submit">
-        {loading ? 'Loading...' : 'Search'}
+        Search
       </Button>
     </form>
   );
