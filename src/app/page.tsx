@@ -1,13 +1,12 @@
 import Image from 'next/legacy/image';
-
-import ImageCollection from '@/components/ImageCollection';
-import Search from '@/components/Search';
 import { buildQuery } from '@/lib/buildQuery';
 import { SEARCH_ENDPOINT } from '@/lib/constants';
 import { QueryParams, SearchImageResult } from '@/lib/types';
+import ImageCollection from './components/ImageCollection';
+import Search from './components/Search';
 
 interface Props {
-  searchParams: Partial<QueryParams>;
+  searchParams: Promise<Partial<QueryParams>>;
 }
 
 const Home = async ({ searchParams }: Props) => {
