@@ -13,10 +13,10 @@ const ImagePage = async ({ params }: Props) => {
   const result: SearchImageResult = await data.json();
 
   return (
-    <div>
+    <>
       <Header />
       <AssetView {...result.collection.items[0]} />
-    </div>
+    </>
   );
 };
 
