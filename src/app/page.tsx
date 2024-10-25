@@ -25,7 +25,10 @@ const Home = async ({ searchParams }: Props) => (
           Search for images from NASA&apos;s media library and explore the universe
         </p>
       </div>
-      <Search />
+
+      <Suspense fallback={null}>
+        <Search />
+      </Suspense>
 
       <Suspense fallback={<CollectionSkeleton />}>
         <ImageCollection searchParams={searchParams} />
