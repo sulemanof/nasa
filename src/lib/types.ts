@@ -1,4 +1,9 @@
 export interface SearchImageItemData {
+  center: string;
+  date_created: string;
+  description: string;
+  keywords: string[];
+  media_type: string;
   nasa_id: string;
   title: string;
   secondary_creator: string;
@@ -29,7 +34,7 @@ export interface SearchImageResult {
     metadata: {
       total_hits: number;
     };
-    links: PaginationLink[];
+    links?: PaginationLink[];
     version: string;
   };
 }
