@@ -16,6 +16,12 @@ export interface SearchImageItem {
   links?: SearchImageItemLink[];
 }
 
+export interface PaginationLink {
+  href: string;
+  prompt: string;
+  rel: string;
+}
+
 export interface SearchImageResult {
   collection: {
     href: string;
@@ -23,6 +29,7 @@ export interface SearchImageResult {
     metadata: {
       total_hits: number;
     };
+    links: PaginationLink[];
     version: string;
   };
 }
@@ -31,4 +38,5 @@ export interface QueryParams {
   q: string;
   year_start?: string;
   year_end?: string;
+  page?: string;
 }

@@ -7,3 +7,5 @@ export const YEAR_END_KEY = 'year_end';
 export const NASA_ID_KEY = 'nasa_id';
 
 export const ASSET_ENDPOINT = `${SEARCH_ENDPOINT}?${NASA_ID_KEY}=`;
+
+export const DEFAULT_PAGE_SIZE = 24;

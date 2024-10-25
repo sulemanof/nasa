@@ -4,6 +4,7 @@ import { SEARCH_ENDPOINT } from '@/lib/constants';
 import { QueryParams, SearchImageResult } from '@/lib/types';
 import ImageCollection from './components/ImageCollection';
 import Search from './components/Search';
+import Pagination from './components/Pagination';
 
 interface Props {
   searchParams: Promise<Partial<QueryParams>>;
@@ -28,11 +29,18 @@ const Home = async ({ searchParams }: Props) => {
       <main className="flex flex-col gap-8 w-full h-full">
         <Search />
 
-        <p>Total hits: {result?.collection.metadata.total_hits}</p>
-        {result?.collection && result.collection.items.length > 0 ? (
-          <ImageCollection collection={result.collection} />
-        ) : (
-          <p className="text-lg text-center">No results found</p>
+        {query && (
+          <>
+            {result?.collection && result.collection.items.length > 0 ? (
+              <>
+                <p>Total hits: {result?.collection.metadata.total_hits}</p>
+                <ImageCollection collection={result.collection} />
+                <Pagination links={result.collection.links} />
+              </>
+            ) : (
+              <p className="text-lg text-center">No results found</p>
+            )}
+          </>
         )}
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>

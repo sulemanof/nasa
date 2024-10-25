@@ -12,7 +12,7 @@ const ImageCollection: React.FC<Props> = ({ collection }) => {
       {collection.items.map((item) => (
         <li key={item.href} className="flex flex-col gap-2 p-4 border rounded-md shadow-md">
           <Link href={`/asset/${item.data[0].nasa_id}`}>
-            <div className="relative flex-shrink-0 w-full h-48 bg-gray-300">
+            <div className="relative h-48 bg-gray-300">
               <Image
                 src={item.links?.[0].href || '/nasa.png'}
                 alt={`${item.data[0].title}`}
