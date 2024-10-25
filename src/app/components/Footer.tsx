@@ -13,10 +13,10 @@ const Footer = () => (
     </p>
     <div className="flex gap-4">
       <Link href="https://github.com/sulemanof" target="_blank" rel="noreferrer">
-        <GitHubLogoIcon width={24} height={24} />
+        <GitHubLogoIcon width={24} height={24} aria-label="GitHub" />
       </Link>
       <Link href="https://www.linkedin.com/in/sulemanof/" target="_blank" rel="noreferrer">
-        <LinkedInLogoIcon width={24} height={24} />
+        <LinkedInLogoIcon width={24} height={24} aria-label="LinkedIn" />
       </Link>
     </div>
   </footer>
