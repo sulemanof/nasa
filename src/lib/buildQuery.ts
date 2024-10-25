@@ -1,19 +1,19 @@
 import { SEARCH_TERM_KEY, YEAR_END_KEY, YEAR_START_KEY } from './constants';
 import { QueryParams } from './types';
 
-export const buildQuery = ({ q, yearStart, yearEnd }: Partial<QueryParams>) => {
+export const buildQuery = ({ q, year_start, year_end }: Partial<QueryParams>) => {
   if (!q) {
     return '';
   }
 
-  let query = `?${SEARCH_TERM_KEY}=${q}`;
+  let query = `?${SEARCH_TERM_KEY}=${q}&media_type=image`;
 
-  if (yearStart) {
-    query += `&${YEAR_START_KEY}=${yearStart}`;
+  if (year_start) {
+    query += `&${YEAR_START_KEY}=${year_start}`;
   }
 
-  if (yearEnd) {
-    query += `&${YEAR_END_KEY}=${yearEnd}`;
+  if (year_end) {
+    query += `&${YEAR_END_KEY}=${year_end}`;
   }
 
   return query;

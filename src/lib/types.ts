@@ -29,6 +29,6 @@ export interface SearchImageResult {
 
 export interface QueryParams {
   q: string;
-  yearStart?: string;
-  yearEnd?: string;
+  year_start?: string;
+  year_end?: string;
 }
