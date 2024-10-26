@@ -1,28 +1,18 @@
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 
-import { QueryParams, SearchImageResult } from '@/lib/types';
+import { SearchImageResult } from '@/lib/types';
 import { DEFAULT_PAGE_SIZE, SEARCH_ENDPOINT } from '@/lib/constants';
 import Pagination from './Pagination';
-import { buildQuery } from '@/lib/buildQuery';
 
 interface Props {
-  searchParams: Promise<Partial<QueryParams>>;
+  query: string;
+  page: number;
 }
 
-const ImageCollection: React.FC<Props> = async ({ searchParams }) => {
-  const params = await searchParams;
-  const query = buildQuery(params);
-
-  if (!query) {
-    return <p className="text-lg text-center">No search query</p>;
-  }
-
-  const page = params.page ? Number(params.page) : 1;
-
-  let result: SearchImageResult | null = null;
+const ImageCollection: React.FC<Props> = async ({ query, page }) => {
   const data = await fetch(`${SEARCH_ENDPOINT}${query}`);
-  result = await data.json();
+  const result: SearchImageResult = await data.json();
 
   if (!result?.collection.items.length) {
     return <p className="text-lg text-center">No results found</p>;
