@@ -1,10 +1,9 @@
-import { afterEach, beforeEach, describe, expect, test, vi, Mock } from 'vitest';
+import { Mock } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Search from './Search';
 import { SEARCH_TERM_KEY, YEAR_START_KEY, YEAR_END_KEY } from '@/lib/constants';
 
-// Mock next/navigation hooks
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
   useSearchParams: vi.fn(),
@@ -17,7 +16,6 @@ describe('Search Component', () => {
     pushMock = vi.fn();
     (useRouter as Mock).mockReturnValue({ push: pushMock });
 
-    // Default mock values for search params
     (useSearchParams as Mock).mockReturnValue({
       get: (key: string) => {
         switch (key) {

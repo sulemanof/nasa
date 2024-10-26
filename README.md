@@ -1,6 +1,10 @@
+**This app is deployed on Vercel and can be accessed [here](https://nasa-sand-five.vercel.app/).**
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-This app is deployed on Vercel and can be accessed [here](https://nasa-sand-five.vercel.app/).
+The app is a simple web application that fetches data from the NASA API and displays the data in a responsive grid layout. The app is built using React, Next.js, Tailwind CSS, and Vitest / React Testing Library for testing.
+
+The app is built based on [shadcn/ui](https://ui.shadcn.com/) design.
 
 ## Getting Started
 
